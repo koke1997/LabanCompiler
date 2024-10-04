@@ -8,19 +8,21 @@ def main():
     parser = argparse.ArgumentParser(description="Labanotation Generator from Video")
     parser.add_argument("--input", type=str, required=True, help="Path to the input video file")
     parser.add_argument("--output", type=str, required=True, help="Path to save the generated Labanotation")
+    parser.add_argument("--select-human", action="store_true", help="Enable human selection by drawing a border")
     args = parser.parse_args()
 
     video_path = args.input
     output_path = args.output
+    select_human = args.select_human
 
-    frames = process_video_input(video_path)
+    frames = process_video_input(video_path, select_human)
     pose_estimations = perform_pose_estimation(frames)
     labanotation = generate_labanotation(pose_estimations)
 
     with open(output_path, 'w') as f:
         yaml.dump(labanotation, f)
 
-def process_video_input(video_path):
+def process_video_input(video_path, select_human=False):
     cap = cv2.VideoCapture(video_path)
     frames = []
 
@@ -28,10 +30,20 @@ def process_video_input(video_path):
         ret, frame = cap.read()
         if not ret:
             break
+        if select_human:
+            frame = select_human_in_video(frame)
         frames.append(frame)
 
     cap.release()
     return frames
+
+def select_human_in_video(frame):
+    r = cv2.selectROI("Select Human", frame, fromCenter=False, showCrosshair=True)
+    if r != (0, 0, 0, 0):
+        x, y, w, h = r
+        frame = frame[y:y+h, x:x+w]
+    cv2.destroyWindow("Select Human")
+    return frame
 
 def perform_pose_estimation(frames):
     pose_estimations = []

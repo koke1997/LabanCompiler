@@ -19,6 +19,7 @@
 - **Labanotation Output**: Converts the extracted motion into Labanotation symbols, providing a detailed and standard representation of movement.
 - **Optimized for Human Models**: Exclusively designed to detect and represent human movements, ensuring high accuracy.
 - **Geometry and Programming Integration**: Combines elements of geometry for movement analysis and programming for automatic conversion to Labanotation.
+- **Human Selection**: Allows selecting a human in the video by drawing a border around it.
 
 ## Technology Stack
 - **Python**: Core language used for scripting and processing.
@@ -66,11 +67,17 @@ After installing the necessary dependencies, you can start using **Bewegungsschr
 2. **Optional Parameters**:
     - `--visualize`: Display a visualization of the movement analysis.
     - `--frame-rate`: Set the frame rate for processing the video (default: 10 fps).
+    - `--select-human`: Enable human selection by drawing a border around the human in the video.
 
 ### Example
 To analyze a video of a dance routine and generate the corresponding Labanotation:
 ```sh
 python bewegungsschrift.py --input videos/dance.mp4 --output notations/dance_notation.yaml --visualize
+```
+
+To analyze a video and select a human by drawing a border around it:
+```sh
+python bewegungsschrift.py --input videos/dance.mp4 --output notations/dance_notation.yaml --select-human
 ```
 
 ## Configuration
