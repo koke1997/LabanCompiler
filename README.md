@@ -1,4 +1,3 @@
-
 # Bewegungsschrift - Labanotation Generator from Video
 
 **Bewegungsschrift** is a tool for generating Labanotation from video inputs, designed exclusively for analyzing human movement. This tool takes a video file as input, uses advanced computer vision to detect human body movements, and converts these movements into Labanotation symbols, creating a precise representation of human motion.
@@ -59,7 +58,7 @@ After installing the necessary dependencies, you can start using **Bewegungsschr
 ### Command-Line Interface
 1. **Basic Usage**:
     ```sh
-    python bewegungsschrift.py --input path/to/your/video.mp4 --output path/to/output.json
+    python bewegungsschrift.py --input path/to/your/video.mp4 --output path/to/output.yaml
     ```
     - `--input`: Path to the video file.
     - `--output`: Path to save the generated Labanotation.
@@ -71,7 +70,7 @@ After installing the necessary dependencies, you can start using **Bewegungsschr
 ### Example
 To analyze a video of a dance routine and generate the corresponding Labanotation:
 ```sh
-python bewegungsschrift.py --input videos/dance.mp4 --output notations/dance_notation.json --visualize
+python bewegungsschrift.py --input videos/dance.mp4 --output notations/dance_notation.yaml --visualize
 ```
 
 ## Configuration
@@ -87,24 +86,17 @@ The tool accepts a video of a human performing movements, such as a dance or exe
 ### Labanotation Output
 The output is a Labanotation file that can be visualized or edited with software like LabanWriter.
 
-Example output (JSON format):
-```json
-{
-    "movements": [
-        {
-            "frame": 1,
-            "body_part": "left_arm",
-            "direction": "upward",
-            "angle": 45
-        },
-        {
-            "frame": 1,
-            "body_part": "right_leg",
-            "direction": "forward",
-            "angle": 30
-        }
-    ]
-}
+Example output (YAML format):
+```yaml
+movements:
+  - frame: 1
+    body_part: left_arm
+    direction: upward
+    angle: 45
+  - frame: 1
+    body_part: right_leg
+    direction: forward
+    angle: 30
 ```
 
 ## Limitations
