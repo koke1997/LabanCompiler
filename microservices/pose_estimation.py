@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import openpose
+import mediapipe as mp
 import requests
 
 def receive_frames_from_video_input(frames):
@@ -9,9 +9,12 @@ def receive_frames_from_video_input(frames):
 
 def perform_pose_estimation(frames):
     pose_estimations = []
-    for frame in frames:
-        pose = openpose.detect_pose(frame)
-        pose_estimations.append(pose)
+    mp_pose = mp.solutions.pose
+    with mp_pose.Pose(static_image_mode=True) as pose:
+        for frame in frames:
+            results = pose.process(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+            if results.pose_landmarks:
+                pose_estimations.append(results.pose_landmarks)
     return pose_estimations
 
 def send_pose_data_to_labanotation_generation(pose_estimations):
