@@ -24,7 +24,7 @@
 ## Technology Stack
 - **Python**: Core language used for scripting and processing.
 - **OpenCV**: For video processing, frame extraction, and human motion detection.
-- **OpenPose**: A machine learning framework used for pose estimation and detecting human body joints.
+- **Mediapipe**: A machine learning framework used for pose estimation and detecting human body joints.
 - **NumPy**: For handling mathematical computations related to geometry.
 - **Matplotlib**: Used to visualize the detected movements and their corresponding Labanotation.
 - **LabanWriter Integration**: The generated Labanotation is compatible with LabanWriter for further editing.
@@ -83,7 +83,7 @@ python bewegungsschrift.py --input videos/dance.mp4 --output notations/dance_not
 ## Configuration
 You can modify the settings of the tool by editing the configuration file `config.yaml`. Key configuration options include:
 - **Frame Rate**: Set the rate at which frames are sampled for analysis.
-- **Pose Estimation Model**: Choose between different pose estimation models (e.g., OpenPose, BlazePose).
+- **Pose Estimation Model**: Choose between different pose estimation models (e.g., Mediapipe, BlazePose).
 - **Output Format**: Specify the format for Labanotation output (e.g., JSON, XML).
 
 ## Examples
