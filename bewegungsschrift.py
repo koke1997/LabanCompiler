@@ -2,6 +2,7 @@ import argparse
 import yaml
 from microservices import video_input, pose_estimation, human_selection, labanotation_generation
 from microservices.pose_estimation.perform_pose_estimation import launch_webcam_test
+from microservices.pose_estimation.launch_webcam_cube_test import launch_webcam_cube_test
 
 def main():
     parser = argparse.ArgumentParser(description="Labanotation Generator from Video")
@@ -9,10 +10,15 @@ def main():
     parser.add_argument("--output", type=str, help="Path to save the generated Labanotation")
     parser.add_argument("--select-human", action="store_true", help="Enable human selection by drawing a border")
     parser.add_argument("--webcam-test", action="store_true", help="Launch test from webcam")
+    parser.add_argument("--webcam-cube", action="store_true", help="Launch cube test from webcam")
     args = parser.parse_args()
 
     if args.webcam_test:
         launch_webcam_test()
+        return
+
+    if args.webcam_cube:
+        launch_webcam_cube_test()
         return
 
     video_path = args.input
