@@ -4,10 +4,15 @@ from microservices import video_input, pose_estimation, human_selection, labanot
 
 def main():
     parser = argparse.ArgumentParser(description="Labanotation Generator from Video")
-    parser.add_argument("--input", type=str, required=True, help="Path to the input video file")
-    parser.add_argument("--output", type=str, required=True, help="Path to save the generated Labanotation")
+    parser.add_argument("--input", type=str, help="Path to the input video file")
+    parser.add_argument("--output", type=str, help="Path to save the generated Labanotation")
     parser.add_argument("--select-human", action="store_true", help="Enable human selection by drawing a border")
+    parser.add_argument("--webcam-test", action="store_true", help="Launch test from webcam")
     args = parser.parse_args()
+
+    if args.webcam_test:
+        pose_estimation.launch_webcam_test()
+        return
 
     video_path = args.input
     output_path = args.output

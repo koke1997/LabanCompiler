@@ -12,8 +12,16 @@ def generate_labanotation(pose_data):
     return labanotation
 
 def convert_pose_to_labanotation(pose):
-    # Placeholder function to convert pose to Labanotation
-    return {"pose": pose}
+    # Convert 3D pose data to Labanotation
+    notation = {}
+    for landmark in pose:
+        notation[landmark['name']] = {
+            'x': landmark['x'],
+            'y': landmark['y'],
+            'z': landmark['z'],
+            'visibility': landmark['visibility']
+        }
+    return notation
 
 def save_labanotation(labanotation, output_path):
     with open(output_path, 'w') as f:
