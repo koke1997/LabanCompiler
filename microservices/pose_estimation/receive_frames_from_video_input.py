@@ -15,4 +15,11 @@ def log_body_part_positions(pose_estimations):
         for pose in pose_estimations:
             for landmark in pose.landmark:
                 logger.info(f"Body part: {landmark.name}, Position: x={landmark.x}, y={landmark.y}, z={landmark.z}")
+            # Log the position of the human in the 3D cube
+            human_position = {
+                'x': pose.landmark[0].x,
+                'y': pose.landmark[0].y,
+                'z': pose.landmark[0].z
+            }
+            logger.info(f"Human position in 3D cube: {human_position}")
         time.sleep(1)
