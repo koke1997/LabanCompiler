@@ -39,6 +39,14 @@ def launch_webcam_cube_test():
                     y = int(landmark.y * frame.shape[0])
                     cv2.rectangle(frame, (x - 10, y - 10), (x + 10, y + 10), (0, 255, 0), 2)
 
+                # Log the position of the human in the 3D cube
+                human_position = {
+                    'x': results.pose_landmarks.landmark[0].x,
+                    'y': results.pose_landmarks.landmark[0].y,
+                    'z': results.pose_landmarks.landmark[0].z
+                }
+                print(f"Human position in 3D cube: {human_position}")
+
             # Show the frame
             cv2.imshow('Webcam Cube Test', frame)
 

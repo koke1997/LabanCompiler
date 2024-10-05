@@ -34,5 +34,22 @@ def main():
     labanotation = labanotation_generation.generate_labanotation(pose_estimations)
     labanotation_generation.save_labanotation(labanotation, output_path)
 
+    # Draw a 3D cube around the human
+    for frame in frames:
+        for pose in pose_estimations:
+            for landmark in pose.landmark:
+                x = int(landmark.x * frame.shape[1])
+                y = int(landmark.y * frame.shape[0])
+                cv2.rectangle(frame, (x - 10, y - 10), (x + 10, y + 10), (0, 255, 0), 2)
+
+    # Log the position of the human in the 3D cube
+    for pose in pose_estimations:
+        human_position = {
+            'x': pose.landmark[0].x,
+            'y': pose.landmark[0].y,
+            'z': pose.landmark[0].z
+        }
+        print(f"Human position in 3D cube: {human_position}")
+
 if __name__ == "__main__":
     main()
