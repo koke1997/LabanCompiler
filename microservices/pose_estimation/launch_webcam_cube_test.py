@@ -47,6 +47,31 @@ def launch_webcam_cube_test():
                 }
                 print(f"Human position in 3D cube: {human_position}")
 
+                # Create a Labanotation language dictionary for the human position
+                labanotation_dict = {
+                    'head': {
+                        'x': results.pose_landmarks.landmark[0].x,
+                        'y': results.pose_landmarks.landmark[0].y,
+                        'z': results.pose_landmarks.landmark[0].z
+                    },
+                    'left_hand': {
+                        'x': results.pose_landmarks.landmark[15].x,
+                        'y': results.pose_landmarks.landmark[15].y,
+                        'z': results.pose_landmarks.landmark[15].z
+                    },
+                    'right_hand': {
+                        'x': results.pose_landmarks.landmark[16].x,
+                        'y': results.pose_landmarks.landmark[16].y,
+                        'z': results.pose_landmarks.landmark[16].z
+                    },
+                    'torso': {
+                        'x': results.pose_landmarks.landmark[11].x,
+                        'y': results.pose_landmarks.landmark[11].y,
+                        'z': results.pose_landmarks.landmark[11].z
+                    }
+                }
+                print(f"Labanotation dictionary: {labanotation_dict}")
+
             # Show the frame
             cv2.imshow('Webcam Cube Test', frame)
 

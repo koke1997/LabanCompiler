@@ -14,7 +14,7 @@ class TestBewegungsschrift(unittest.TestCase):
     @patch('bewegungsschrift.argparse.ArgumentParser.parse_args')
     def test_main_with_webcam_cube(self, mock_parse_args):
         mock_parse_args.return_value = MagicMock(webcam_cube=True, input=None, output=None, select_human=False)
-        with patch('bewegungsschrift.pose_estimation.launch_webcam_cube_test') as mock_launch_webcam_cube_test:
+        with patch('bewegungsschrift.launch_webcam_cube_test') as mock_launch_webcam_cube_test:
             bewegungsschrift.main()
             mock_launch_webcam_cube_test.assert_called_once()
 
