@@ -68,6 +68,7 @@ After installing the necessary dependencies, you can start using **Bewegungsschr
 2. **Optional Parameters**:
     - `--select-human`: Enable human selection by drawing a border around the human in the video.
     - `--webcam-test`: Launch test from webcam.
+    - `--webcam-cube`: Launch cube test from webcam.
 
 ### Example
 To analyze a video of a dance routine and generate the corresponding Labanotation:
@@ -83,6 +84,11 @@ python bewegungsschrift.py --input videos/dance.mp4 --output notations/dance_not
 To launch a webcam test:
 ```sh
 python bewegungsschrift.py --webcam-test
+```
+
+To launch a cube test from webcam:
+```sh
+python bewegungsschrift.py --webcam-cube
 ```
 
 ## Configuration

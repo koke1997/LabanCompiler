@@ -12,6 +12,13 @@ class TestBewegungsschrift(unittest.TestCase):
             mock_launch_webcam_test.assert_called_once()
 
     @patch('bewegungsschrift.argparse.ArgumentParser.parse_args')
+    def test_main_with_webcam_cube(self, mock_parse_args):
+        mock_parse_args.return_value = MagicMock(webcam_cube=True, input=None, output=None, select_human=False)
+        with patch('bewegungsschrift.pose_estimation.launch_webcam_cube_test') as mock_launch_webcam_cube_test:
+            bewegungsschrift.main()
+            mock_launch_webcam_cube_test.assert_called_once()
+
+    @patch('bewegungsschrift.argparse.ArgumentParser.parse_args')
     def test_main_with_video_input(self, mock_parse_args):
         mock_parse_args.return_value = MagicMock(webcam_test=False, input='input.mp4', output='output.yaml', select_human=False)
         with patch('bewegungsschrift.video_input.extract_frames', return_value=['frame1', 'frame2']) as mock_extract_frames, \
