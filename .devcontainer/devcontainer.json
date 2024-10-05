@@ -1,6 +1,0 @@
-{
-  "tasks": {
-    "build": "pip install -r requirements.txt",
-    "test": "ls microservices"
-  }
-}
