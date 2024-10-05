@@ -1,5 +1,6 @@
 import argparse
 import yaml
+import cv2
 from microservices import video_input, pose_estimation, human_selection, labanotation_generation
 from microservices.pose_estimation.perform_pose_estimation import launch_webcam_test
 from microservices.pose_estimation.launch_webcam_cube_test import launch_webcam_cube_test

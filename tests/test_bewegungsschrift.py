@@ -46,5 +46,14 @@ class TestBewegungsschrift(unittest.TestCase):
             mock_generate_labanotation.assert_called_once_with(['pose1', 'pose2'])
             mock_save_labanotation.assert_called_once_with('labanotation', 'output.yaml')
 
+    @patch('bewegungsschrift.argparse.ArgumentParser.parse_args')
+    def test_main_with_webcam_cube_logging(self, mock_parse_args):
+        mock_parse_args.return_value = MagicMock(webcam_cube=True, input=None, output=None, select_human=False)
+        with patch('bewegungsschrift.pose_estimation.launch_webcam_cube_test') as mock_launch_webcam_cube_test, \
+             patch('builtins.print') as mock_print:
+            bewegungsschrift.main()
+            mock_launch_webcam_cube_test.assert_called_once()
+            mock_print.assert_any_call("Human position in 3D cube: {'x': 0.5, 'y': 0.5, 'z': 0.0}")
+
 if __name__ == '__main__':
     unittest.main()
